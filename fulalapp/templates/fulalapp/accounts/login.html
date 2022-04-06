@@ -1,0 +1,28 @@
+{% extends 'fulalapp/base.html' %}
+{% block body %}
+<div class="d-flex justify-content-center mt-5">
+
+  <form action="{% url 'accounts:login' %}" method="post">
+  {% csrf_token %}
+    <div class="form-group justify-content-center">
+
+    <small class="form-text text-muted">Enter Username & Password Here</small>
+  <input type="text" name="username" placeholder="username"><br>
+    </div>
+    <div class="form-group">
+    <input type="password" name="password" placeholder="password"><br>
+    </div>
+    <button type="submit" class="btn btn-outline-primary">Login</button>
+    
+  </form>
+
+  </div>
+<br>
+  {% for message in messages %}
+  <div class="alert alert-info" role="alert">
+    <p>{{ message }}</p>
+  </div>
+
+  {% endfor %}
+
+{% endblock %}

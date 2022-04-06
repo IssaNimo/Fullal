@@ -1,0 +1,61 @@
+{% extends "fulalapp/base.html" %}
+{% load static %}
+
+{% block body %}
+
+<div class="container-fluid">
+  <h1>View Student Details</h1>
+  {% for message in messages %}
+  {{message}}
+  {% endfor %}
+
+
+<table class="table table-sm">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Reg No</th>
+      <th scope="col">First Name</th>
+      <th scope="col">Last Name</th>
+      <th scope="col">DOB</th>
+      <th scope="col">Name Of School</th>
+      <th scope="col">Class/Grade</th>
+      <th scope="col">Date Of Menstruation</th>
+      <th scope="col">Photo Id</th>
+      <th scope="col">Parent Name</th>
+      <th scope="col">Phone Number</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for s in studentdetails %}
+    <tr>
+
+      <th scope="row">{{forloop.counter}}</th>
+      <td>{{ s.regno }}</td>
+      <td>{{ s.first_name }}</td>
+      <td>{{ s.last_name }}</td>
+      <td>{{ s.dob }}</td>
+      <td>{{ s.school_name }}</td>
+      <td>{{ s.grade }}</td>
+      <td>{{ s.dom }}</td>
+      <td><img src="{{ s.photoid.url }}" height="40%" width="40%"></td>
+      <td>{{ s.parent_name }}</td>
+      <td>{{ s.phoneno }}</td>
+      <td>
+        <a class="btn btn-sm btn-warning" href="{% url 'fulalapp:edit_student' s.id%}">
+        <span class="glyphicon glyphicon-edit"></span> Edit</a>
+        </td>
+        <td><a class="btn btn-sm btn-danger" href="{% url 'fulalapp:delete_student' s.id%}">
+          <span class="glyphicon glyphicon-trash">
+          </span> Delete</a>
+        </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+</div>
+
+{% endblock %}

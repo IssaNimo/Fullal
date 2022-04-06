@@ -1,0 +1,28 @@
+{% extends 'fulalapp/base.html' %}
+{% load static %}
+{% block body %}
+
+<div class="d-flex justify-content-center mt-5">
+
+  <form action="{% url 'accounts:register' %}" method="post">
+    {% csrf_token %}
+  <div class="form-group justify-content-center">
+  <small class="form-text text-muted">Register New User</small>
+  <input type="text" name="first_name" placeholder="First Name"><br><br>
+  <input type="text" name="last_name" placeholder="Last Name"><br><br>
+  <input type="text" name="username" placeholder="Username"><br><br>
+  <input type="email" name="email" placeholder="Email Address"><br><br>
+  <input type="password" name="password1" placeholder="Password"><br><br>
+  <input type="password" name="password2" placeholder="Confirm Password"><br><br>
+  <button type="submit" class="btn btn-outline-primary">Register</button>
+  </div>
+</form>
+
+</div>
+
+{% for message in messages %}
+<div class="alert alert-info" role="alert">
+  <p>{{ message }}</p>
+</div>
+{% endfor %}
+{% endblock %}

@@ -1,0 +1,97 @@
+{% extends "fulalapp/base.html" %}
+{% load static %}
+
+{% block body %}
+
+<div class="container-fluid">
+  <h1>Welcome To Fulal App</h1>
+    {% for message in messages %}
+  {{message}}
+{% endfor %}
+
+
+{% if studentdetails %}
+<form action="{% url 'fulalapp:update_student' studentdetails.id %}" method="POST" class="post-form" ">
+        {% csrf_token %}
+    <div class="container">
+<br>
+    <div class="form-group row">
+    <label class="col-sm-1 col-form-label"></label>
+    <div class="col-sm-4">
+    <h3>Update Details</h3>
+    </div>
+  </div>
+    <div class="form-group row">
+    <label class="col-sm-2 col-form-label">Registration Number:</label>
+    <div class="col-sm-4">
+        <input type="text" name="eid" id="id_regno" required maxlength="20" value="{{ studentdetails.regno }}"/>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-sm-2 col-form-label">First Name:</label>
+    <div class="col-sm-4">
+        <input type="text" name="ename" id="id_firstname" required maxlength="100" value="{{ studentdetails.first_name }}" />
+    </div>
+  </div>
+    <div class="form-group row">
+    <label class="col-sm-2 col-form-label">Last Name:</label>
+    <div class="col-sm-4">
+        <input type="text" name="lastname" id="id_lastname" required maxlength="254" value="{{ studentdetails.last_name }}" />
+    </div>
+  </div>
+    <div class="form-group row">
+    <label class="col-sm-2 col-form-label">Date Of Birth Contact:</label>
+    <div class="col-sm-4">
+        <input type="text" name="econtact" id="id_econtact" required maxlength="15" value="{{ studentdetails.dob }}" />
+    </div>
+  </div>
+  <div class="form-group row">
+  <label class="col-sm-2 col-form-label">Name Of School:</label>
+  <div class="col-sm-4">
+      <input type="text" name="econtact" id="id_econtact" required maxlength="15" value="{{ studentdetails.school_name }}" />
+  </div>
+</div>
+<div class="form-group row">
+<label class="col-sm-2 col-form-label">Class/Grade:</label>
+<div class="col-sm-4">
+    <input type="text" name="econtact" id="id_econtact" required maxlength="15" value="{{ studentdetails.grade }}" />
+</div>
+</div>
+<div class="form-group row">
+<label class="col-sm-2 col-form-label">Date Of Menstruation:</label>
+<div class="col-sm-4">
+    <input type="text" name="econtact" id="id_econtact" required maxlength="15" value="{{ studentdetails.dom }}" />
+</div>
+</div>
+<div class="form-group row">
+<label class="col-sm-2 col-form-label">Photo Id:</label>
+<div class="col-sm-4">
+    <input type="text" name="econtact" id="id_econtact" required maxlength="15" value="{{ studentdetails.photoid }}" />
+</div>
+</div>
+<div class="form-group row">
+<label class="col-sm-2 col-form-label">Parent/Guardian Name:</label>
+<div class="col-sm-4">
+    <input type="text" name="econtact" id="id_econtact" required maxlength="15" value="{{ studentdetails.parent_name }}" />
+</div>
+</div>
+<div class="form-group row">
+<label class="col-sm-2 col-form-label">Phone Number:</label>
+<div class="col-sm-4">
+    <input type="text" name="econtact" id="id_econtact" required maxlength="15" value="{{ studentdetails.phoneno }}" />
+</div>
+</div>
+  <div class="form-group row">
+  <label class="col-sm-1 col-form-label"></label>
+  <div class="text-center">
+  <button type="submit" class="btn btn-primary" name="submit">UPDATE</button>
+  </div>
+</div>
+</div>
+</div>
+</form>
+{% endif %}
+</div>
+
+
+{% endblock %}

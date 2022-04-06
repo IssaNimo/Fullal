@@ -1,0 +1,57 @@
+.feDashboard .content {
+    width: 100%;
+    margin: auto;
+}
+
+.primaryNavBar {
+    background-color: #3d3635;
+}
+
+
+.primaryNavBar .nav-link,
+.secondaryNavBar .nav-link {
+    color: #f8f9fa !important;
+    transform: all 0.2s;
+}
+
+.primaryNavBar .nav-link:hover,
+.secondaryNavBar .nav-link:hover {
+    color: goldenrod !important;
+}
+
+.primaryNavBar .search input {
+    background: transparent;
+    border: 1px solid #f8f9fa;
+    color: #f8f9fa;
+}
+
+.primaryNavBar .search input::placeholder {
+    color: #f8f9fa;
+}
+
+.primaryNavBar .search button {
+    border: 1px #8f8f8f;
+}
+
+.status-tag {
+    border: 1.4pt solid #009345;
+    padding: 0.2rem .5rem;
+    margin: 0.2rem;
+    font-weight: 500;
+}
+
+.workflow-title {
+    font-weight: 500;
+    color: rgb(0, 147, 69);
+    text-transform: uppercase;
+}
+
+@media only screen and (max-width: 575.98px) {
+    .feDashboard .content {
+        width: 100%;
+    }
+}
+
+.cardHeader .btn-success {
+    font-weight: 600;
+}

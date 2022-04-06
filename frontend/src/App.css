@@ -1,0 +1,41 @@
+
+@import url("https://fonts.googleapis.com/css?family=Poppins:400,700,500,600");
+
+* {
+    outline: none !important;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    font-family: "Poppins", sans-serif !important;
+    
+    background-color: goldenrod;
+}
+
+#root, .App {
+    height: 100%;
+    background-color: goldenrod;
+
+}
+
+h1 {
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+}
+
+.table th {
+    font-size: 1em;
+    font-weight: 600;
+}
+
+.table td {
+    font-size: 0.9em;
+}
+
+.table-details tr td {
+    width: 50%;
+}

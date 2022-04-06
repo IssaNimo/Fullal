@@ -1,0 +1,58 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+
+    <title>FULAL DATA COLLECTION APPLICATION</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="{% url 'fulalapp:homepage' %}">FDC APPLICATION</a>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'fulalapp:homepage' %}">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'fulalapp:aboutpage' %}">About</a>
+          </li>
+        {% if user.is_authenticated and request.user %}
+        <li class="nav-item">
+          <a class="nav-link">Hello, {{ user.username|default:'Guest' }}</a>
+        </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'fulalapp:add_student' %}">Add Student Details</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'fulalapp:studentdetails' %}">View All Details</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'accounts:logout' %}">Logout</a>
+          </li>
+
+        </ul>
+        {% endif %}
+
+          {% csrf_token %}
+           <a href="{% url 'accounts:login' %}"><button class="btn btn-outline-success my-2 my-sm-0" type="submit">Login</button></a>
+
+
+      </div>
+    </nav>
+    <div class="container">
+      {% block body %}
+      {% endblock %}
+    </div>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="{% static 'js/bootstrap.js' %}"></script>
+  </body>
+</html>
