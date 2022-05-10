@@ -17,11 +17,15 @@ class StudentPadCollectionDetailsSerializer(serializers.ModelSerializer):
 class StudentRegistrationDetailsSerializer(serializers.ModelSerializer):
     pad_collection = StudentPadCollectionDetailsSerializer(read_only = True, many=True)
     padcollection = StudentPadCollectionDetailsSerializer(read_only = True, many=True)
+
     class Meta:
         model = StudentRegistrationDetails
         fields = '__all__'
 
 class JoinStudentPadTableSerializer(serializers.ModelSerializer):
+    padcollection = StudentPadCollectionDetailsSerializer(read_only = True, many=True)
     class Meta:
         model = JoinStudentPadTable
-        fields = ('regno', 'first_name', 'last_name', 'school_name', 'collection_date', 'last_collected', 'served_by')
+        fields = '__all__'
+
+        # fields = ('regno', 'first_name', 'last_name', 'school_name', 'collection_date', 'last_collected', 'served_by')

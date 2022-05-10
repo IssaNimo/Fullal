@@ -1,17 +1,18 @@
 import axios from 'axios'
 import React, {useState, useEffect} from 'react'
 import { Col, Row, Tab, Form, Table, Button, Card } from 'react-bootstrap'
-import { useHistory, useParams, Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 
 
 
-export default function SanitaryPads() {
+
+export default function SanitaryPads(props) {
 
   const[collection_date, setCollectionDate] = useState("")
   const[last_collected, setLastCollected] = useState("")
   const[served_by, setServedBy] = useState("")
   const[regno, setRegno] = useState("")
-
+  const[pads_collected, setPadsCollected] = useState("")
 
   const history = useHistory()
 
@@ -21,11 +22,11 @@ export default function SanitaryPads() {
     formField.append('last_collected', last_collected)
     formField.append('served_by', served_by)
     formField.append('regno', regno)
-
+    formField.append('pads_collected', pads_collected)
 
     await axios({
       method: 'post',
-      url: 'http://localhost:8001/api/padcollection-create/',
+      url: 'http://localhost:8001/api/padcollection/',
       data: formField
     }).then((response) =>{
       console.log(response.data)
@@ -36,19 +37,20 @@ export default function SanitaryPads() {
       console.log(error.response)
     });
 
-  }
-  const [students, setStudents] = useState([])
-
-  const { id } = useParams();
-
-  const getSingelStudent = async () =>{
-    const { data } = await axios.get(`http://localhost:8001/api/padcollectionjoin-list/`)
-    console.log(data)
-    setStudents(data)
+  }  
+  const [Studentpadcollectionjoin, setStudentpadcollectionjoin] = useState([])
+  const fetchStudentpadcollectionjoin = async () =>{
+    const results = await axios.get('http://localhost:8001/api/studentpadcollectionjoin/' );
+    
+    console.log(results.data)
+    setStudentpadcollectionjoin(results.data)
+   
   }
   useEffect(() =>{
-    getSingelStudent();
-  }, )
+    fetchStudentpadcollectionjoin();
+  }, [])
+ 
+
   return (
     <div>
       <Row>
@@ -64,37 +66,45 @@ export default function SanitaryPads() {
 
 <thead>
   <tr>
+   
     <th>Registration Number</th>
     <th>First Name</th>
     <th>Last Name</th>
     <th>School</th>
     <th>Collection Date</th>
     <th>Last Collection Date</th>
+    <th>Number of Pads Collected</th>
     <th>Served By</th>
   </tr>
 </thead>
 <>
     {
-        students.map((students)=>  
+        Studentpadcollectionjoin.map((student)=>  
         <tbody>
-        <tr key={students.regno}>
-          <td>{students.regno}</td>
-          <td>{students.first_name}</td>
-          <td>{students.last_name}</td>
-          <td>{students.school_name}</td>
-          <td>{students.collection_date}</td>
-          <td>{students.last_collected}</td>
-          <td>{students.served_by}</td>  
+        <tr key={student.id}>
+          <td>{student.regno}</td>
+          <td>{student.first_name}</td>
+          <td>{student.last_name}</td>
+          <td>{student.school_name}</td>
+          <td>{student.collection_date}</td>
+          <td>{student.last_collected}</td>
+          <td>{student.pads_collected}</td>
+          <td>{student.served_by}</td>
+
+          <td >
+
+
+            </td>
         </tr>
       </tbody>
      
       )}
     </>
-
 </Table> 
  
        
       </Card.Body>
+      
     </Card>              
       </Col>
         <Col style={{backgroundColor: 'white', marginTop: '1rem'}} md={3}>
@@ -156,8 +166,26 @@ export default function SanitaryPads() {
           />
         </Form.Group>
           </Row>  
-          <div  className="mb-2">
-    <Button variant="warning" size="sm">
+          <Row className="mb-1">
+        <Form.Group as={Col} md="12">
+          <Form.Label>Number of Pads Collected</Form.Label>
+          <div>
+              <select style={{width: '50%'}}
+              value={pads_collected}
+              onChange={(e) => {
+                const numberofpadscollected = e.target.value;
+                setPadsCollected(numberofpadscollected)
+              }}>
+                <option></option>
+                <option value='Eight'>Eight</option>
+                <option value='Ten'>Ten</option>
+                  </select>
+                  
+    </div>
+        </Form.Group>
+          </Row> 
+          <div style={{marginTop: '15px'}}  className="mb-2">
+    <Button as={Link} to={'/'} variant="warning" size="sm">
       Cancel
     </Button>{' '}
     <Button variant="primary" size="sm" onClick={addPadCollectionDetails }>

@@ -8,11 +8,20 @@
     
 }
 .navbar {
-    position: relative;
+    height: 70px;
+    display: flex;
+    font-size: 1.1rem;
+    position: sticky;
+    top: 0;
+    z-index: 20;
 }
 .brand {
     position: absolute;
     left: 50%;
     margin-left: -50px !important;  /* 50% of your logo width */
     display: block;
+}
+.logo{
+    height: 12rem;
+    margin-left: -200px;
 }

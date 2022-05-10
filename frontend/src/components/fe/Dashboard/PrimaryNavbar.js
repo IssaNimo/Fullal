@@ -17,12 +17,12 @@ export default function primaryNavbar() {
     <Router>
     <div>
       <Navbar fixed expand="lg" className="primaryNavBar">
-  <Container fluid>
+  <Container>
     <Navbar.Brand href="/">
-    <img className='logo' src={'/logo1.png'} alt="avatar"/>
+    <img  className='logo' src={'/logo.png'} alt="avatar"/>
       </Navbar.Brand>
     <Navbar.Collapse id="navbarScroll">
-      
+
       <Nav className="m-auto">
       
         <Nav.Link as={Link} to={"/home"}>
@@ -39,7 +39,7 @@ export default function primaryNavbar() {
         </Nav.Link>
       
       </Nav>
-      <Form className="d-flex">
+      <Form style={{marginRight:'-150px'}} className="d-flex">
         <FormControl
           type="search"
           placeholder="Search"
@@ -56,7 +56,7 @@ export default function primaryNavbar() {
           <Route path="/students">
             <Students />
           </Route>
-          <Route path="/sanitary-Pads">
+          <Route path="/sanitary-Pads/:id">
             <SanitaryPads />
           </Route>
           <Route path="/">

@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import {Link, useParams} from "react-router-dom";
+import {Link} from "react-router-dom";
 import axios from "axios"
 
 import {Card, Button, Table, Row, Col} from "react-bootstrap";
@@ -7,11 +7,10 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faEye, faPlus} from "@fortawesome/free-solid-svg-icons";
 
 export default function Home() {
-
   const [students, setStudents] = useState([])
 
   const fetchStudents = async () => {
-      const result = await axios.get('http://localhost:8001/api/student-list/');
+      const result = await axios.get('http://localhost:8001/api/students/');
 
       console.log(result.data)
       setStudents(result.data)
@@ -30,7 +29,7 @@ export default function Home() {
       <Card.Header style={{backgroundColor: '#3d3635', color: 'white'}}>
         <div className="d-flex justify-content-between align-items-center">
           <h2>{`Student Details`}</h2>
-          <Button as={Link} variant="light" to="/students">
+          <Button  variant="light" as={Link} to={'/students'}>
             <FontAwesomeIcon icon={faPlus}/>
             &nbsp;{`Add Student`}
           </Button>
@@ -54,7 +53,7 @@ export default function Home() {
     </thead>
     <>
     {
-        students.map((student)=>  
+        students.map((student, index)=>  
         <tbody>
         <tr key={student.id}>
           <td>{student.id}</td>
@@ -65,7 +64,9 @@ export default function Home() {
           <td>{student.school_name}</td>
           <td>{student.grade}</td>
           <td >
-          <Link className="btn btn-outline-primary mr-2" to={`sanitary-Pads/`}> <FontAwesomeIcon icon={faEye}/></Link>
+          <Link className="btn btn-outline-primary mr-2" to={`/sanitary-pads/${student.id}`}> <FontAwesomeIcon icon={faEye}/></Link>
+          
+
             </td>
         </tr>
       </tbody>
