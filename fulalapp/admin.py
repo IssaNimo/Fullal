@@ -1,6 +1,6 @@
 from django.contrib import admin
 from fulalapp import models
-from .models import StudentRegistrationDetails, StudentPadCollectionDetails, JoinStudentPadTable
+from .models import StudentRegistrationDetails, StudentPadCollectionDetails, JoinStudentPadTable, user
 
 # Register your models here.
 @admin.register(StudentRegistrationDetails)
@@ -17,3 +17,7 @@ class StudentPadCollectionDetailsModelAdmin(admin.ModelAdmin):
 class JoinStudentPadTableModelAdmin(admin.ModelAdmin):
     list_display = ('regno','first_name', 'last_name','school_name','collection_date','last_collected','served_by')
     prepoulated_fields = {'regno':(' regno',),}
+
+@admin.register(user)
+class userModelAdmin(admin.ModelAdmin):
+    list_display = ('username', 'email', 'password')

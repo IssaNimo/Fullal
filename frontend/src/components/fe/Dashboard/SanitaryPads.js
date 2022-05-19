@@ -1,7 +1,7 @@
 import axios from 'axios'
 import React, {useState, useEffect} from 'react'
-import { Col, Row, Tab, Form, Table, Button, Card } from 'react-bootstrap'
-import { Link, useHistory } from 'react-router-dom'
+import { Col, Row, Form, Table, Button, Card } from 'react-bootstrap'
+import { Link, useHistory, useParams } from 'react-router-dom'
 
 
 
@@ -50,7 +50,18 @@ export default function SanitaryPads(props) {
     fetchStudentpadcollectionjoin();
   }, [])
  
+  const [student, setStudent] = useState([])
 
+  const {id} = useParams ();
+  console.log(id);
+  useEffect (() => {
+    loadStudent()
+  }, [])
+  const loadStudent = async () =>{
+    const results = await axios.get (`http://localhost:8001/api/students/${id}`);
+    
+    setStudent(results.data)
+  }
   return (
     <div>
       <Row>
@@ -62,7 +73,7 @@ export default function SanitaryPads(props) {
         </div>
       </Card.Header>
       <Card.Body>
-      <Table  responsive="md" >
+      <Table striped bordered hover  responsive="md" >
 
 <thead>
   <tr>
@@ -82,7 +93,7 @@ export default function SanitaryPads(props) {
         Studentpadcollectionjoin.map((student)=>  
         <tbody>
         <tr key={student.id}>
-          <td>{student.regno}</td>
+          <td>{student.id}</td>
           <td>{student.first_name}</td>
           <td>{student.last_name}</td>
           <td>{student.school_name}</td>
@@ -101,21 +112,14 @@ export default function SanitaryPads(props) {
       )}
     </>
 </Table> 
- 
-       
+
       </Card.Body>
       
-    </Card>              
-      </Col>
-        <Col style={{backgroundColor: 'white', marginTop: '1rem'}} md={3}>
-          <p style={{fontSize:'1.4em', fontWeight:'500', marginBottom:'1rem', marginTop:'1rem', }} className='mb-3'>Add Pad Collection Details</p>
-          <div>
-            <nav style={{marginBottom: '1.5rem'}}>
-            <Tab.Container  defaultActiveKey="#link1">
+    </Card>  
 
-          </Tab.Container>
-            </nav>
-          </div>
+      </Col>
+        <Col style={{backgroundColor: 'white', marginTop: '1rem', height: '350px'}} md={3}>
+          <p style={{fontSize:'1.4em', fontWeight:'500', marginBottom:'1rem', marginTop:'1rem', }} className='mb-3'>Add Pad Collection Details</p>
           <Form>
       <Row className="mb-3">
       <Form.Group as={Col} md="6">

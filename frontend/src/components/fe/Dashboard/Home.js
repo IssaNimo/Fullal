@@ -2,12 +2,14 @@ import React, {useEffect, useState} from 'react'
 import {Link} from "react-router-dom";
 import axios from "axios"
 
-import {Card, Button, Table, Row, Col} from "react-bootstrap";
+import {Card, Button, Table, Row, Col, FormControl, Form} from "react-bootstrap";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faEye, faPlus} from "@fortawesome/free-solid-svg-icons";
 
 export default function Home() {
   const [students, setStudents] = useState([])
+  const[searchTerm, setSearchTerm] = useState('')
+
 
   const fetchStudents = async () => {
       const result = await axios.get('http://localhost:8001/api/students/');
@@ -25,18 +27,37 @@ export default function Home() {
     <Row>
       <Col md={2}>  </Col>
       <Col md={8}>  
-            <Card>
+            <Card >
       <Card.Header style={{backgroundColor: '#3d3635', color: 'white'}}>
-        <div className="d-flex justify-content-between align-items-center">
+        <div >
           <h2>{`Student Details`}</h2>
-          <Button  variant="light" as={Link} to={'/students'}>
-            <FontAwesomeIcon icon={faPlus}/>
-            &nbsp;{`Add Student`}
-          </Button>
         </div>
       </Card.Header>
       <Card.Body>
-      <Table  responsive="md">
+        <Row>
+          <Col md={6}>
+      <Button as={Link} variant="dark" to={'/students'}>
+            <FontAwesomeIcon icon={faPlus}/>
+            &nbsp;{`Add Student`}
+          </Button>
+          </Col>
+          <Col md={2}>  </Col>
+          <Col md={4}>
+          <Form className="d-flex">
+        <FormControl 
+          type="search"
+          onChange={(e) =>{
+            setSearchTerm(e.target.value)
+          }}
+          placeholder="Search"
+          className="me-8"
+          aria-label="Search"
+        />
+        <Button variant="dark">Search</Button>
+      </Form>
+      </Col>
+      </Row>
+      <Table style={{marginTop: '20px'}} striped bordered hover  responsive="md">
 
     <thead>
       <tr>
@@ -53,7 +74,14 @@ export default function Home() {
     </thead>
     <>
     {
-        students.map((student, index)=>  
+        students.filter((value) => {
+          if(searchTerm === ""){
+            return value
+          } else if (value.regno.toLowerCase().includes(searchTerm.toLowerCase())){
+            return value
+          }
+        })
+        .map((student, index)=>  
         <tbody>
         <tr key={student.id}>
           <td>{student.id}</td>
@@ -65,8 +93,6 @@ export default function Home() {
           <td>{student.grade}</td>
           <td >
           <Link className="btn btn-outline-primary mr-2" to={`/sanitary-pads/${student.id}`}> <FontAwesomeIcon icon={faEye}/></Link>
-          
-
             </td>
         </tr>
       </tbody>
@@ -80,6 +106,7 @@ export default function Home() {
     </Col>
     <Col md={2}></Col>
     </Row>
+    
     </div>
   )
 }

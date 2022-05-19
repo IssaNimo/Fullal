@@ -1,4 +1,5 @@
 from datetime import datetime
+import email
 from pyexpat import model
 from tabnanny import verbose
 from webbrowser import get
@@ -67,11 +68,7 @@ class JoinStudentPadTable(models.Model):
     last_collected = models.DateField(verbose_name='Last collection Date')
     served_by = models.CharField(max_length=30, verbose_name='Served BY')
     pads_collected = models.CharField(max_length=30, verbose_name='Number of Pads Collected')
-
     regno = models.ForeignKey("StudentRegistrationDetails", related_name='padcollection' , verbose_name=("Student ID"), on_delete=models.CASCADE)
-
-
-
 
     def _str_(self):
         return str(self.regno)
@@ -79,3 +76,13 @@ class JoinStudentPadTable(models.Model):
     class Meta:
         verbose_name_plural = 'Joint Student Pad Collection Details'    
 
+
+class user(models.Model):
+    username = models.CharField(max_length=255, null=False)
+    email = models.EmailField(max_length=255, null=False)
+    password = models.CharField(max_length=50)
+    iflogged = models.BooleanField(default=False)
+    token = models.CharField(max_length=500, null=True, default="")
+
+    def __str__(self):
+        return "{} -{}".format(self.username, self.email)
