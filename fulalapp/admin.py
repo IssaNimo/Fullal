@@ -5,7 +5,7 @@ from .models import StudentRegistrationDetails, StudentPadCollectionDetails, Joi
 # Register your models here.
 @admin.register(StudentRegistrationDetails)
 class StudentRegistrationDetailsModelAdmin(admin.ModelAdmin):
-    list_display = ('regno','first_name', 'last_name', 'dob', 'county', 'constituency',
+    list_display = ('first_name', 'last_name', 'dob', 'county', 'constituency',
     'school_name','grade','dom','photoid', 'status', 'created')
     
 @admin.register(StudentPadCollectionDetails)

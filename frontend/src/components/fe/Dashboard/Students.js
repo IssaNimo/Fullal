@@ -186,15 +186,25 @@ export default function Students() {
         
         </Form.Group>
         <Form.Group as={Col} md="6">
-          <Form.Label>Constituency</Form.Label>
-          <Form.Control
-             required
-             type='text'
-             placeholder='Constituency'
-             name='constituency'
-             value={constituency}
-             onChange = {(e) => setConstituency(e.target.value)}
-          />
+          <Form.Label>Sub County</Form.Label>
+                 <div>
+              <select style={{width: '100%', height: '35px'}}
+              value={constituency}
+              onChange={(e) => {
+                const subCounty = e.target.value;
+                setConstituency(subCounty)
+              }}>
+                <option></option>
+                <option value='Baragoi'>Baragoi</option>
+                <option value='Kirisia'>Kirisia</option>
+                <option value='Lorroki'>Lorroki</option>
+                <option value='Nyiro'>Nyiro</option>
+                <option value='Wamba'>Wamba</option>
+                <option value='Waso'>Waso</option>
+
+                  </select>
+                  
+    </div>
         </Form.Group>
     
         </Row>

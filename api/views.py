@@ -13,7 +13,7 @@ from django.http import Http404, JsonResponse
 
 
 
-from .serializers import StudentPadCollectionDetailsSerializer, StudentRegistrationDetailsSerializer, JoinStudentPadTableSerializer
+from .serializers import StudentPadCollectionDetailsSerializer, StudentRegistrationDetailsSerializer
 from fulalapp import models
 from fulalapp.models import StudentPadCollectionDetails, StudentRegistrationDetails, JoinStudentPadTable
 
@@ -35,9 +35,6 @@ class padapi(viewsets.ModelViewSet):
         padcollection = StudentPadCollectionDetails.objects.all()
         return padcollection
 
-class jointtableapi(viewsets.ReadOnlyModelViewSet):
-    queryset = JoinStudentPadTable.objects.raw('SELECT fulalapp_studentregistrationdetails.id, regno_id,  first_name, last_name, school_name,collection_date, last_collected, served_by, pads_collected  FROM fulalapp_studentregistrationdetails INNER JOIN fulalapp_studentpadcollectiondetails ON  fulalapp_studentregistrationdetails.id = fulalapp_studentpadcollectiondetails.regno_id WHERE regno_id = regno_id')
-    serializer_class = JoinStudentPadTableSerializer
-    lookup_field = 'regno_id'
+
 
 

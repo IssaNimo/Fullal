@@ -18,7 +18,7 @@ class StudentRegistrationDetails(models.Model):
     )
 
     #student details
-    regno =  models.CharField(max_length=50, verbose_name = 'Student Registrartion Number')
+    # regno =  models.CharField(max_length=50, verbose_name = 'Student Registrartion Number')
     first_name = models.CharField(max_length=30, blank = True, verbose_name = 'First Name')
     last_name = models.CharField(max_length=30, blank = True, verbose_name = 'Last Name')
     dob = models.DateField(verbose_name = 'Date Of Birth')

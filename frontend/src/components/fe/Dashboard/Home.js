@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import {Link} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 import axios from "axios"
 
 import {Card, Button, Table, Row, Col, FormControl, Form} from "react-bootstrap";
@@ -21,6 +21,7 @@ export default function Home() {
   useEffect(() => {
       fetchStudents();
   }, [])
+
 
   return (
     <div> 
@@ -62,7 +63,6 @@ export default function Home() {
     <thead>
       <tr>
         <th>#</th>
-        <th>Registartion Number</th>
         <th>First Name</th>
         <th>Last Name</th>
         <th>Date of Birth</th>
@@ -85,15 +85,15 @@ export default function Home() {
         <tbody>
         <tr key={student.id}>
           <td>{student.id}</td>
-          <td>{student.regno}</td>
           <td>{student.first_name}</td>
           <td>{student.last_name}</td>
           <td>{student.dob}</td>
           <td>{student.school_name}</td>
           <td>{student.grade}</td>
           <td >
-          <Link className="btn btn-outline-primary mr-2" to={`/sanitary-pads/${student.id}`}> <FontAwesomeIcon icon={faEye}/></Link>
+          <Link className="btn btn-outline-primary mr-2" to={`/sanitary-Pads/${student.id}`}> <FontAwesomeIcon icon={faEye}/></Link>
             </td>
+ 
         </tr>
       </tbody>
      

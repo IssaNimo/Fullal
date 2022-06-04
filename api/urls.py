@@ -8,7 +8,6 @@ from rest_framework.routers import DefaultRouter
 router = DefaultRouter()
 router.register('students',Studentapi, basename='students' ),
 router.register('padcollection',padapi, basename='padcollection' ),
-router.register('studentpadcollectionjoin',jointtableapi, basename='studentpadcollectionjoin' ),
 
 urlpatterns = [
     path('', include(router.urls)),

@@ -2,7 +2,8 @@ import axios from 'axios'
 import React, {useState, useEffect} from 'react'
 import { Col, Row, Form, Table, Button, Card } from 'react-bootstrap'
 import { Link, useHistory, useParams } from 'react-router-dom'
-
+import Tabs from 'react-bootstrap/Tabs';
+import Tab from 'react-bootstrap/Tab';
 
 
 
@@ -38,89 +39,100 @@ export default function SanitaryPads(props) {
     });
 
   }  
-  const [Studentpadcollectionjoin, setStudentpadcollectionjoin] = useState([])
-  const fetchStudentpadcollectionjoin = async () =>{
-    const results = await axios.get('http://localhost:8001/api/studentpadcollectionjoin/' );
-    
-    console.log(results.data)
-    setStudentpadcollectionjoin(results.data)
-   
-  }
-  useEffect(() =>{
-    fetchStudentpadcollectionjoin();
-  }, [])
- 
+  const {id} = useParams()
   const [student, setStudent] = useState([])
+  useEffect(() => {
+    loadStudents();
+}, []) // eslint-disable-line react-hooks/exhaustive-deps
 
-  const {id} = useParams ();
-  console.log(id);
-  useEffect (() => {
-    loadStudent()
-  }, [])
-  const loadStudent = async () =>{
-    const results = await axios.get (`http://localhost:8001/api/students/${id}`);
-    
-    setStudent(results.data)
-  }
+
+let loadStudents = async () => {
+  const result = await axios.get(`http://localhost:8001/api/students/${id}`);
+  
+  console.log(result.data);
+  setStudent([result.data])
+
+ }
+ const [pad_collection, setPadcollection] = useState([])
+ useEffect(() => {
+   loadPadcollectiondetails();
+  
+ }, []) // eslint-disable-line react-hooks/exhaustive-deps
+
+ let loadPadcollectiondetails = async () => {
+   const result = await axios.get(`http://localhost:8001/api/students/${id}`);
+
+   console.log(result.data.pad_collection);
+   setPadcollection(result.data.pad_collection)
+ }
   return (
     <div>
       <Row>
-      <Col style={{marginLeft:'3rem'}} md={8}>
-      <Card style={{marginTop:'1rem'}}>
+      <Col md={2}>  </Col>
+      <Col md={8}>  
+      <Card style={{marginTop: '20px'}}>
       <Card.Header style={{backgroundColor: '#3d3635', color: 'white'}}>
-        <div className="d-flex justify-content-between align-items-center">
-          <h2>{`Pad Collection Details`}</h2>
+        <div >
+          <h2>{`Student Pad Collection Details`}</h2>
         </div>
       </Card.Header>
-      <Card.Body>
-      <Table striped bordered hover  responsive="md" >
+  <Card.Body class="p-0 pt-3">
+    <div style={{ display: 'block', width: 1100 }}>
+      <Tabs defaultActiveKey="first">
+        <Tab eventKey="first" title="Student Details">
+          
+        <Row>
+          
+  <Col md={2}> 
+  {
+                student.map((student, index) => (
+                    <Card className="m-3 rounded shadow-lg" style={{ width: '22em', color: 'white' }} bg='dark'>
+                    <Card.Body key={student.id}>
+                        <Card.Text> Student Name :&nbsp;&nbsp; {student.first_name}&nbsp;&nbsp;{student.last_name} </Card.Text>
+                        <Card.Text> Name of School : &nbsp;&nbsp; {student.school_name} </Card.Text>
+                        <Card.Text> Class/Grade : &nbsp;&nbsp; {student.grade} </Card.Text>
+                        <Card.Text> Date of Birth : &nbsp;&nbsp; {student.dob} </Card.Text>
+         
+                    </Card.Body>
+                    </Card>
+                ))
+              }
+</Col>
+<Col md={2}>  </Col>
+<Col md={7}>
+  <Table style={{marginTop: '19px'}} striped bordered hover  responsive="md">
+  <thead>
+      <tr>
+        <th>Last Collection Date</th>
+        <th>Number of Pads Collected</th>
+        <th>Served By</th>
 
-<thead>
-  <tr>
-   
-    <th>Registration Number</th>
-    <th>First Name</th>
-    <th>Last Name</th>
-    <th>School</th>
-    <th>Collection Date</th>
-    <th>Last Collection Date</th>
-    <th>Number of Pads Collected</th>
-    <th>Served By</th>
-  </tr>
-</thead>
-<>
+      </tr>
+    </thead>
+    <>
     {
-        Studentpadcollectionjoin.map((student)=>  
+        pad_collection.map((pad_collection, index)=>  
         <tbody>
-        <tr key={student.id}>
-          <td>{student.id}</td>
-          <td>{student.first_name}</td>
-          <td>{student.last_name}</td>
-          <td>{student.school_name}</td>
-          <td>{student.collection_date}</td>
-          <td>{student.last_collected}</td>
-          <td>{student.pads_collected}</td>
-          <td>{student.served_by}</td>
-
+        <tr key={pad_collection.id}>
+          <td>{pad_collection.last_collected}</td>
+          <td>{pad_collection.pads_collected}</td>
+          <td>{pad_collection.served_by}</td>
           <td >
-
-
             </td>
+ 
         </tr>
       </tbody>
      
       )}
     </>
-</Table> 
+  </Table>
+</Col>
+</Row>        
+</Tab>
+<Tab eventKey="second" title="Add Pad Collection Details">
+<p style={{fontSize:'1.4em', fontWeight:'500', marginLeft: '15px', marginTop: '5px'}} className='mb-3'>Add Student Details</p>
 
-      </Card.Body>
-      
-    </Card>  
-
-      </Col>
-        <Col style={{backgroundColor: 'white', marginTop: '1rem', height: '350px'}} md={3}>
-          <p style={{fontSize:'1.4em', fontWeight:'500', marginBottom:'1rem', marginTop:'1rem', }} className='mb-3'>Add Pad Collection Details</p>
-          <Form>
+<Form style={{marginLeft: '15px', marginRight: '15px', marginTop: '-15px'}}>
       <Row className="mb-3">
       <Form.Group as={Col} md="6">
           <Form.Label>Collection Date</Form.Label>
@@ -196,8 +208,17 @@ export default function SanitaryPads(props) {
       Update
     </Button>
   </div>
-        </Form>
-          </Col>
+        </Form>   
+        
+        </Tab>
+      </Tabs>
+    </div>
+  </Card.Body>     
+
+</Card>
+</Col>
+<Col md={2}>  </Col>
+
       </Row>
     </div>
   )
