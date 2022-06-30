@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import {Link, useParams} from "react-router-dom";
+import {Link} from "react-router-dom";
 import axios from "axios"
 
 import {Card, Button, Table, Row, Col, FormControl, Form} from "react-bootstrap";
@@ -7,6 +7,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faEye, faPlus} from "@fortawesome/free-solid-svg-icons";
 
 export default function Home() {
+  
   const [students, setStudents] = useState([])
   const[searchTerm, setSearchTerm] = useState('')
 
@@ -77,7 +78,7 @@ export default function Home() {
         students.filter((value) => {
           if(searchTerm === ""){
             return value
-          } else if (value.regno.toLowerCase().includes(searchTerm.toLowerCase())){
+          } else if (value.id.toLowerCase().includes(searchTerm.toLowerCase())){
             return value
           }
         })
