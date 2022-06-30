@@ -9,6 +9,8 @@ import Tab from 'react-bootstrap/Tab';
 
 export default function SanitaryPads(props) {
 
+
+
   const[collection_date, setCollectionDate] = useState("")
   const[last_collected, setLastCollected] = useState("")
   const[served_by, setServedBy] = useState("")
@@ -65,6 +67,7 @@ let loadStudents = async () => {
    console.log(result.data.pad_collection);
    setPadcollection(result.data.pad_collection)
  }
+
   return (
     <div>
       <Row>
@@ -177,7 +180,8 @@ let loadStudents = async () => {
             type="text"
             placeholder="Registration Number"
             name='regno'
-            value={regno}
+            defaultValue={regno.regno}
+            value={regno.regno}
             onChange = {(e) => setRegno(e.target.value)}
           />
         </Form.Group>

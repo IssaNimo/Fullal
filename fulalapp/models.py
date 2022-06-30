@@ -59,22 +59,7 @@ class StudentPadCollectionDetails(models.Model):
     class Meta:
         verbose_name_plural = 'Student Pad Collection Details'    
 
-
-class JoinStudentPadTable(models.Model):
-    first_name = models.CharField(max_length=30, blank = True, verbose_name = 'First Name')
-    last_name = models.CharField(max_length=30, blank = True, verbose_name = 'Last Name')
-    school_name = models.CharField(max_length=30, blank = True, verbose_name = 'School Name')
-    collection_date = models.DateField(default=datetime.now, verbose_name='Collection Date')
-    last_collected = models.DateField(verbose_name='Last collection Date')
-    served_by = models.CharField(max_length=30, verbose_name='Served BY')
-    pads_collected = models.CharField(max_length=30, verbose_name='Number of Pads Collected')
-    regno = models.ForeignKey("StudentRegistrationDetails", related_name='padcollection' , verbose_name=("Student ID"), on_delete=models.CASCADE)
-
-    def _str_(self):
-        return str(self.regno)
-
-    class Meta:
-        verbose_name_plural = 'Joint Student Pad Collection Details'    
+  
 
 
 class user(models.Model):

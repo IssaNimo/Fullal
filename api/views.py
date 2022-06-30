@@ -15,7 +15,7 @@ from django.http import Http404, JsonResponse
 
 from .serializers import StudentPadCollectionDetailsSerializer, StudentRegistrationDetailsSerializer
 from fulalapp import models
-from fulalapp.models import StudentPadCollectionDetails, StudentRegistrationDetails, JoinStudentPadTable
+from fulalapp.models import StudentPadCollectionDetails, StudentRegistrationDetails
 
 from api import serializers
 
