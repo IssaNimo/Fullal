@@ -9,16 +9,30 @@ import Tab from 'react-bootstrap/Tab';
 
 export default function SanitaryPads(props) {
 
-
-
   const[collection_date, setCollectionDate] = useState("")
   const[last_collected, setLastCollected] = useState("")
   const[served_by, setServedBy] = useState("")
   const[regno, setRegno] = useState("")
   const[pads_collected, setPadsCollected] = useState("")
-
+  const params = useParams()
   const history = useHistory()
 
+  useEffect(()=>{
+    getPadDetails()
+
+  },[])// eslint-disable-line react-hooks/exhaustive-deps
+
+const getPadDetails = async () =>{
+  // console.warn(params)
+  let result = await fetch(`http://localhost:8001/api/students/${params.id}`)
+  result = await result.json ()
+  // console.warn(result)
+  setRegno(result.id)
+  setLastCollected(result.data.pad_collection.last_collected)
+
+
+
+}
   const addPadCollectionDetails = async () =>{
     let formField = new FormData()
     formField.append('collection_date', collection_date)
@@ -50,7 +64,7 @@ export default function SanitaryPads(props) {
 
 let loadStudents = async () => {
   const result = await axios.get(`http://localhost:8001/api/students/${id}`);
-  
+  // console.warn("result", result)
   console.log(result.data);
   setStudent([result.data])
 
@@ -73,7 +87,7 @@ let loadStudents = async () => {
       <Row>
       <Col md={2}>  </Col>
       <Col md={8}>  
-      <Card style={{marginTop: '20px'}}>
+      <Card>
       <Card.Header style={{backgroundColor: '#3d3635', color: 'white'}}>
         <div >
           <h2>{`Student Pad Collection Details`}</h2>
@@ -95,7 +109,6 @@ let loadStudents = async () => {
                         <Card.Text> Name of School : &nbsp;&nbsp; {student.school_name} </Card.Text>
                         <Card.Text> Class/Grade : &nbsp;&nbsp; {student.grade} </Card.Text>
                         <Card.Text> Date of Birth : &nbsp;&nbsp; {student.dob} </Card.Text>
-         
                     </Card.Body>
                     </Card>
                 ))
@@ -180,10 +193,9 @@ let loadStudents = async () => {
             type="text"
             placeholder="Registration Number"
             name='regno'
-            defaultValue={regno.regno}
-            value={regno.regno}
+            value={regno}
             onChange = {(e) => setRegno(e.target.value)}
-          />
+                      />
         </Form.Group>
           </Row>  
           <Row className="mb-1">

@@ -59,8 +59,6 @@ class StudentPadCollectionDetails(models.Model):
     class Meta:
         verbose_name_plural = 'Student Pad Collection Details'    
 
-  
-
 
 class user(models.Model):
     username = models.CharField(max_length=255, null=False)

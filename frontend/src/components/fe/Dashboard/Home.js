@@ -78,7 +78,7 @@ export default function Home() {
         students.filter((value) => {
           if(searchTerm === ""){
             return value
-          } else if (value.id.toLowerCase().includes(searchTerm.toLowerCase())){
+          } else if (value. first_name.toLowerCase().includes(searchTerm.toLowerCase())){
             return value
           }
         })
