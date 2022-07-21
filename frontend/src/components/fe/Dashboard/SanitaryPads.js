@@ -28,7 +28,7 @@ const getPadDetails = async () =>{
   result = await result.json ()
   // console.warn(result)
   setRegno(result.id)
-  setLastCollected(result.data.pad_collection.last_collected)
+ 
 
 
 
