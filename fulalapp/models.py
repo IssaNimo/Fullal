@@ -47,7 +47,7 @@ class StudentRegistrationDetails(models.Model):
 class StudentPadCollectionDetails(models.Model):
     
     collection_date = models.DateField(default=datetime.now, verbose_name='Collection Date')
-    last_collected = models.DateField(verbose_name='Last collection Date')
+    # last_collected = models.DateField(verbose_name='Last collection Date')
     served_by = models.CharField(max_length=30, verbose_name='Served BY')
     regno = models.ForeignKey("StudentRegistrationDetails", related_name='pad_collection' , verbose_name=("Student ID"), on_delete=models.CASCADE)
     pads_collected = models.CharField(max_length=30, verbose_name='Number of Pads Collected')
