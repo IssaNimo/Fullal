@@ -4,13 +4,14 @@ import "./style.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import {Nav, Navbar, Container} from 'react-bootstrap'
-import { BrowserRouter as Router, Link, Switch, Route} from "react-router-dom";
+import { BrowserRouter as Router, Link, Switch, Route, Redirect} from "react-router-dom";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faHome, faFemale, faCalendar} from "@fortawesome/free-solid-svg-icons";
 
 import Students from './Students';
 import SanitaryPads from './SanitaryPads';
 import Home from './Home';
+import Login from './Login';
 
 export default function primaryNavbar() {
   return (
@@ -27,7 +28,7 @@ export default function primaryNavbar() {
       
         <Nav.Link as={Link} to={"/home"}>
         <FontAwesomeIcon icon={faHome}/>
-        &nbsp;&nbsp;{`Dashboard`}
+        &nbsp;&nbsp;{`Dashboards`}
         </Nav.Link>
         &nbsp;&nbsp;
         <Nav.Link as={Link} to={"/students"}>
@@ -47,7 +48,8 @@ export default function primaryNavbar() {
     <Switch>
           <Route path="/students"><Students /></Route>
           <Route path="/sanitary-Pads/:id"><SanitaryPads /></Route>
-          <Route path="/"><Home /></Route>
+          <Route path="/home"><Home /></Route>
+          <Route path="/"><Login /></Route>
         </Switch>
     </Router>
   )

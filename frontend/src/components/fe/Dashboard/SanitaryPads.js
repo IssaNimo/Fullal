@@ -82,7 +82,7 @@ let loadStudents = async () => {
  }
  const disableDate = () => {
   const today = new Date();
-  const dd = String(today.getDate() + 1).padStart(2, "0");
+  const dd = String(today.getDate() + 0).padStart(2, "0");
   const mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
   const yyyy = today.getFullYear();
   return yyyy + "-" + mm + "-" + dd;
@@ -155,9 +155,9 @@ let loadStudents = async () => {
 <Tab eventKey="second" title="Add Pad Collection Details">
 <p style={{fontSize:'1.4em', fontWeight:'700', marginLeft: '15px', marginTop: '10px', textAlign: 'center'}} className='mb-3'>Add Student Pad Collection Details</p>
 
-<Form style={{marginLeft: '15px', marginRight: '15px', marginTop: '5px'}}>
+<Form style={{marginLeft: '45px', marginRight: '15px', marginTop: '5px'}}>
       <Row className="mb-3">
-      <Form.Group as={Col} md="6">
+      <Form.Group as={Col} md="5">
           <Form.Label>Collection Date</Form.Label>
           <Form.Control
             required
@@ -171,7 +171,7 @@ let loadStudents = async () => {
           />
         </Form.Group>
         
-        <Form.Group as={Col} md="6">
+        <Form.Group as={Col} md="5">
           <Form.Label>Registration Number</Form.Label>
           <Form.Control
             required
@@ -185,7 +185,7 @@ let loadStudents = async () => {
           </Row>
 
           <Row className="mb-1">
-          <Form.Group as={Col} md="6">
+          <Form.Group as={Col} md="5">
           <Form.Label>Number of Pads Collected</Form.Label>
           <div>
               <select style={{width: '100%'}}
@@ -201,7 +201,7 @@ let loadStudents = async () => {
                   
     </div>
         </Form.Group>
-        <Form.Group as={Col} md="6">
+        <Form.Group as={Col} md="5">
           <Form.Label>Served By</Form.Label>
           <Form.Control
             required
