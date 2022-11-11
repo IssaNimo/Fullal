@@ -13,7 +13,7 @@ export const SideBar = () => {
                 return(
                     <div className='side3' key={index}>
                         <NavLink as={Link} to={item.path}>
-                            <span>{item.icon}</span>
+                            <span id='icon'>{item.icon}</span>
                             <span id='title'>{item.title}</span>
 
                         </NavLink>
