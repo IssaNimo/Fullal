@@ -195,13 +195,9 @@ export default function Students() {
                 setConstituency(subCounty)
               }}>
                 <option></option>
-                <option value='Baragoi'>Baragoi</option>
-                <option value='Kirisia'>Kirisia</option>
-                <option value='Lorroki'>Lorroki</option>
-                <option value='Nyiro'>Nyiro</option>
-                <option value='Wamba'>Wamba</option>
-                <option value='Waso'>Waso</option>
-
+                <option value='Samburu North'>Samburu North</option>
+                <option value='Samburu East'>Samburu East</option>
+                <option value='Samburu West'>Samburu West</option>
                   </select>
                   
     </div>

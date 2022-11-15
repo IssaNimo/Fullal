@@ -13,9 +13,9 @@ from django.http import Http404, JsonResponse
 
 
 
-from .serializers import StudentPadCollectionDetailsSerializer, StudentRegistrationDetailsSerializer
+from .serializers import StudentPadCollectionDetailsSerializer, StudentRegistrationDetailsSerializer, SubCountySerializer
 from fulalapp import models
-from fulalapp.models import StudentPadCollectionDetails, StudentRegistrationDetails
+from fulalapp.models import StudentPadCollectionDetails, StudentRegistrationDetails, SubCounty
 
 from api import serializers
 
@@ -36,5 +36,11 @@ class padapi(viewsets.ModelViewSet):
         return padcollection
 
 
+class SubCountyapi(viewsets.ModelViewSet):
+    queryset = SubCounty.objects.all()
+    serializer_class = SubCountySerializer
 
+    def get_queryset(self):
+        subcounty = SubCounty.objects.all()
+        return subcounty
 
