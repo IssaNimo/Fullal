@@ -5,7 +5,6 @@ import { Link, useHistory } from 'react-router-dom'
 
 export default function Students() {
 
-  const[regno, setRegno] = useState("")
   const[first_name, setFirstName] = useState("")
   const[last_name, setLastName] = useState("")
   const[dob, setDob] = useState("")
@@ -46,9 +45,7 @@ export default function Students() {
     formField.append('fathers_name', fathers_name)
     formField.append('area_chief', area_chief)
     formField.append('chief_phoneno', chief_phoneno)
-    if (photoid === null){
-      formField.append('photoid', photoid)
-    }
+    if (photoid === null){formField.append('photoid', photoid)}
 
     await axios({
       method: 'post',
@@ -57,7 +54,7 @@ export default function Students() {
   
     }).then((response) =>{
       console.log(response.data)
-      history.push('/')
+      history.push('/home')
       
     })
     .catch((error) => {
@@ -65,6 +62,31 @@ export default function Students() {
       console.log(error.response)
   });
   
+  }
+  const[subcounty_name, setSubCountyName] = useState("")
+  const[regno, setRegno] = useState("")
+
+  const addSubCounty = async () => {
+    let formField = new FormData()
+    formField.append('regno', regno)
+    formField.append('subcounty_name', subcounty_name)
+    formField.append('constituency', constituency)
+
+    await axios({
+      method: 'post',
+      url: 'http://localhost:8001/api/subcounty/',
+      data: formField
+  
+    }).then((response) =>{
+      console.log(response.data)
+      history.push('/home')
+      
+    })
+    .catch((error) => {
+      // here you will have access to error.response
+      console.log(error.response)
+  });
+
   }
 
   return (
@@ -192,6 +214,7 @@ export default function Students() {
               value={constituency}
               onChange={(e) => {
                 const subCounty = e.target.value;
+                setSubCountyName(subCounty)
                 setConstituency(subCounty)
               }}>
                 <option></option>
@@ -309,7 +332,7 @@ export default function Students() {
     <Button as={Link} to={'/'} variant="warning" size="lg">
       Cancel
     </Button>{' '}
-    <Button variant="primary" size="lg" onClick={addStudentInfo}>
+    <Button variant="primary" size="lg" onClick= {() => {addStudentInfo(); addSubCounty()}}>
       Add Student
     </Button>
   </div>

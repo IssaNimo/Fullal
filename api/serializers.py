@@ -12,7 +12,8 @@ from fulalapp import models
 from fulalapp.models import StudentRegistrationDetails
 from fulalapp.models import StudentPadCollectionDetails
 from fulalapp.models import user
-from fulalapp.models import SubCounty
+from fulalapp.models import subcounty
+
 
 
 class StudentPadCollectionDetailsSerializer(serializers.ModelSerializer):
@@ -21,17 +22,21 @@ class StudentPadCollectionDetailsSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class subcountySerializer(serializers.ModelSerializer):
+    class  Meta:
+        model = subcounty
+        fields = '__all__'
+       
+       
 class StudentRegistrationDetailsSerializer(serializers.ModelSerializer):
     pad_collection = StudentPadCollectionDetailsSerializer(read_only = True, many=True)
+    sub_county = subcountySerializer(read_only = True, many=True)
 
     class Meta:
         model = StudentRegistrationDetails
         fields = '__all__'
 
 
-class SubCountySerializer(serializers.ModelSerializer):
-    class Meta:
-        model = SubCounty
-        fields = '__all__'
 
 
+       

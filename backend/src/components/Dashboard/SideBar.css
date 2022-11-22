@@ -101,17 +101,18 @@ a:hover{
     .sub_counties {
       display: flex;
       gap: 1rem;
+      margin-top: 100px;
     }
   
     .SamburuEast {
       margin: auto 0;
       margin-top: -100px;
-      margin-left: 100px;
+      margin-left: 185px;
     }
   
     .SamburuWest {
       margin: auto 0;
-      margin-left: 825px;
+      margin-left: 875px;
       margin-top: -250px;
 
     }

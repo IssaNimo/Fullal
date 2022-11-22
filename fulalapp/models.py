@@ -18,7 +18,7 @@ class StudentRegistrationDetails(models.Model):
     )
 
     #student details
-    # regno =  models.CharField(max_length=50, verbose_name = 'Student Registrartion Number')
+    regno =  models.CharField(max_length=50, verbose_name = 'Student Registrartion Number')
     first_name = models.CharField(max_length=30, blank = True, verbose_name = 'First Name')
     last_name = models.CharField(max_length=30, blank = True, verbose_name = 'Last Name')
     dob = models.DateField(verbose_name = 'Date Of Birth')
@@ -70,12 +70,13 @@ class user(models.Model):
         return "{} -{}".format(self.username, self.email)
 
 
-class SubCounty(models.Model):
-    SubCounty_name = models.CharField(max_length=255, null=False)
-    SubCounty_Id = models.CharField(max_length=255, null=False)
+class subcounty(models.Model):
+    subcounty_name = models.CharField(max_length=255, null=False)
+    regno = models.ForeignKey("StudentRegistrationDetails", related_name='sub_county', verbose_name=("student ID"), on_delete=models.CASCADE)
+
 
     def _str_(self):
-        return str(self.SubCounty_Id)
+        return str(self.regno)
 
     class Meta:
-        verbose_name_plural = 'Sub County'    
+        verbose_name_plural = 'sub county'

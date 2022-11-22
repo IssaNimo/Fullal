@@ -44,7 +44,7 @@ const getPadDetails = async () =>{
       data: formField
     }).then((response) =>{
       console.log(response.data)
-      history.push('/')
+      history.push('/home')
     } )
     .catch((error) => {
       // here you will have access to error.response
@@ -76,7 +76,7 @@ let loadStudents = async () => {
  let loadPadcollectiondetails = async () => {
    const result = await axios.get(`http://localhost:8001/api/students/${id}`);
 
-   console.log(result.data.pad_collection);
+  //  console.log(result.data.pad_collection);
    setPadcollection(result.data.pad_collection)
 
  }

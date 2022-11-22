@@ -4,7 +4,7 @@ import "./style.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import {Nav, Navbar, Container} from 'react-bootstrap'
-import { BrowserRouter as Router, Link, Switch, Route, Redirect} from "react-router-dom";
+import { BrowserRouter as Router, Link, Switch, Route} from "react-router-dom";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faHome, faFemale, faCalendar} from "@fortawesome/free-solid-svg-icons";
 
