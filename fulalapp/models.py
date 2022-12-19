@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import date
 import email
 from pyexpat import model
 from tabnanny import verbose
@@ -46,7 +46,7 @@ class StudentRegistrationDetails(models.Model):
 
 class StudentPadCollectionDetails(models.Model):
     
-    collection_date = models.DateField(default=datetime.now, verbose_name='Collection Date')
+    collection_date = models.DateField(default=date.today, verbose_name='Collection Date')
     served_by = models.CharField(max_length=30, verbose_name='Served BY')
     regno = models.ForeignKey("StudentRegistrationDetails", related_name='pad_collection' , verbose_name=("Student ID"), on_delete=models.CASCADE)
     pads_collected = models.CharField(max_length=30, verbose_name='Number of Pads Collected')
@@ -72,7 +72,7 @@ class user(models.Model):
 
 class subcounty(models.Model):
     subcounty_name = models.CharField(max_length=255, null=False)
-    regno = models.ForeignKey("StudentRegistrationDetails", related_name='sub_county', verbose_name=("student ID"), on_delete=models.CASCADE)
+    # regno = models.ForeignKey("StudentRegistrationDetails", related_name='sub_county', verbose_name=("student ID"), on_delete=models.CASCADE)
 
 
     def _str_(self):

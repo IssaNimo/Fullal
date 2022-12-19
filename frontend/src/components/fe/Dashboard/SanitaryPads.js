@@ -164,9 +164,7 @@ let loadStudents = async () => {
             type="date"
             placeholder="Collection Date"
             name='collection_date'
-            value={collection_date}
-            min={disableDate()}
-            max={disableDate()}
+            value={disableDate()}
             onChange = {(e) => setCollectionDate(e.target.value)}
           />
         </Form.Group>
