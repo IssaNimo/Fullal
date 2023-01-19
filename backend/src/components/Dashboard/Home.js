@@ -40,8 +40,24 @@ console.log(counts)
       <div className=''>
         
         <div className='sub_counties SamburuNorth'>
-          <h2 className='counties_title'>Samburu North</h2>
+          <h2 className='counties_title'>
+          {/* {countyTypes
+              .map((countyType) =>
+                sub_county
+                .filter((item) => item.subcounty_name === countyType)
+                .map((countyType) => countyType.subcounty_name)
+
+              )
+            .map(countyType => (<span>{countyType}</span>))} */}
+          </h2>
           <p>
+            {/* {countyTypes
+              .map((countyType) =>
+                sub_county.filter((item) => item.subcounty_name === countyType).length
+              )
+            .map(countyType => (<span>{countyType} </span>))} */}
+                        <h2 className='counties_title'> Samburu North</h2>
+
           </p>
         </div>
         <div className='wrapper'>

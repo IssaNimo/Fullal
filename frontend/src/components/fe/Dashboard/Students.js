@@ -45,7 +45,7 @@ export default function Students() {
     formField.append('fathers_name', fathers_name)
     formField.append('area_chief', area_chief)
     formField.append('chief_phoneno', chief_phoneno)
-    if (photoid === null){formField.append('photoid', photoid)}
+    formField.append('photoid', photoid)
 
     await axios({
       method: 'post',

@@ -112,6 +112,8 @@ let loadStudents = async () => {
                 student.map((student, index) => (
                     <Card className="m-3 rounded shadow-lg" style={{ width: '22em', color: 'white' }} bg='dark'>
                     <Card.Body key={student.id}>
+                      <img src={student.photoid} alt='' height={200} width={200}></img>
+                      <hr></hr>
                         <Card.Text> Student Name :&nbsp;&nbsp; {student.first_name}&nbsp;&nbsp;{student.last_name} </Card.Text>
                         <Card.Text> Name of School : &nbsp;&nbsp; {student.school_name} </Card.Text>
                         <Card.Text> Class/Grade : &nbsp;&nbsp; {student.grade} </Card.Text>
