@@ -1,13 +1,13 @@
+from webbrowser import get
+from django.db import router
 from django.urls import path, include
+from api import views
+from .views import *
+from rest_framework.routers import DefaultRouter
 
-from .import views
-
-app_name = 'accounts'
+router = DefaultRouter()
+router.register('users',Userapi, basename='users' ),
 
 urlpatterns = [
-
-    #path('accounts/', include("django.contrib.auth.urls")),
-    path('register/', views.register, name='register'),
-    path('login/', views.login, name='login'),
-    path('logout/', views.logout, name='logout'),
+    path('', include(router.urls)),
 ]
