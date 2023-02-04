@@ -1,6 +1,6 @@
 from django.contrib import admin
 from fulalapp import models
-from .models import StudentRegistrationDetails, StudentPadCollectionDetails, user
+from .models import StudentRegistrationDetails, StudentPadCollectionDetails
 
 # Register your models here.
 @admin.register(StudentRegistrationDetails)
@@ -14,6 +14,3 @@ class StudentPadCollectionDetailsModelAdmin(admin.ModelAdmin):
 
 
 
-@admin.register(user)
-class userModelAdmin(admin.ModelAdmin):
-    list_display = ('username', 'email', 'password')

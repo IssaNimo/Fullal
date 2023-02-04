@@ -6,8 +6,7 @@ from webbrowser import get
 from django.db import models
 from django.utils import timezone
 
-def user_directory_path(instance, filename):
-    return 'img/{0}'.format(filename)
+
 
 # Create your models here.
 class StudentRegistrationDetails(models.Model):
@@ -57,17 +56,6 @@ class StudentPadCollectionDetails(models.Model):
 
     class Meta:
         verbose_name_plural = 'Student Pad Collection Details'    
-
-
-class user(models.Model):
-    username = models.CharField(max_length=255, null=False)
-    email = models.EmailField(max_length=255, null=False)
-    password = models.CharField(max_length=50)
-    iflogged = models.BooleanField(default=False)
-    token = models.CharField(max_length=500, null=True, default="")
-
-    def __str__(self):
-        return "{} -{}".format(self.username, self.email)
 
 
 class subcounty(models.Model):

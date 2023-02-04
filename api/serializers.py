@@ -11,7 +11,6 @@ from django.core.exceptions import ValidationError
 from fulalapp import models
 from fulalapp.models import StudentRegistrationDetails
 from fulalapp.models import StudentPadCollectionDetails
-from fulalapp.models import user
 from fulalapp.models import subcounty
 
 

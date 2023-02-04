@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'rest_framework',
     'corsheaders',
+    'accounts',
 
     #myapps
     'fulalapp.apps.FulalappConfig',
@@ -155,3 +156,5 @@ LOGIN_REDIRECT_URL = 'fulalapp:homepage' #after login redirect page to dashboard
 LOGOUT_REDIRECT_URL = 'accounts:login' #after logout redirect page to login page (index)
 
 CORS_ALLOW_ALL_ORIGINS = True
+
+AUTH_USER_MODEL = 'accounts.User'
