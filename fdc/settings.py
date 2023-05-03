@@ -43,6 +43,11 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
     'accounts',
+    "graphene_django",
+    'graphql_jwt.refresh_token.apps.RefreshTokenConfig',
+    "graphql_auth",
+    'django_filters',
+
 
     #myapps
     'fulalapp.apps.FulalappConfig',
@@ -158,3 +163,20 @@ LOGOUT_REDIRECT_URL = 'accounts:login' #after logout redirect page to login page
 CORS_ALLOW_ALL_ORIGINS = True
 
 AUTH_USER_MODEL = 'accounts.User'
+
+GRAPHENE = {
+    'SCHEMA': 'accounts.schema.schema', # this file doesn't exist yet
+    'MIDDLEWARE': [
+        'graphql_jwt.middleware.JSONWebTokenMiddleware',
+    ],
+}
+
+AUTHENTICATION_BACKENDS = [
+        
+    "graphql_auth.backends.GraphQLAuthBackend",
+    'django.contrib.auth.backends.ModelBackend',
+]
+
+GRAPHQL_JWT = {
+    "JWT_VERIFY_EXPIRATION": True,
+}

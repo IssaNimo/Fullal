@@ -1,28 +1,35 @@
-
-from codecs import lookup
-from urllib import response
-from django.shortcuts import get_object_or_404
-from rest_framework import generics
-from api.custom_renderers import JPEGRenderer, PNGRenderer
-from rest_framework.response import Response
 from rest_framework.decorators import api_view
-from rest_framework import status
-from rest_framework import viewsets
-from django.http import Http404, JsonResponse
+from rest_framework.response import Response
+from rest_framework.authtoken.serializers import AuthTokenSerializer
+# from knox.auth import AuthToken
 
 
+@api_view(['POST'])   
+def login_api(request):
+    serializer = AuthTokenSerializer(data=request.data)
+    serializer.is_valid(raise_exception=True)
+    user = serializer.validated_data['user']
+    
+    _, token = AuthToken.objects.create(user)
+    
+    return Response ({
+                'user_info': {
+                'id': user.id,
+                'email': user.email                 
+            },
+            'token': token                
+    })       
 
-
-from .serializers import LoginSerializer
-from fulalapp import models
-from accounts.models import User
-
-from accounts import serializers
-
-class Userapi(viewsets.ModelViewSet):
-    queryset = User.objects.all()
-    serializer_class = LoginSerializer
-
-    def get_queryset(self):
-        user = User.objects.all()
-        return user
+@api_view(['GET'])
+def get_user_data(request):
+    user = request.user
+    
+    if user.is_authenticated:
+        return Response({
+                'user_info': {
+                'id': user.id,
+                'email': user.email,
+                'mobile': user.mobile_number  
+                },              
+        })
+    return Response({'error': 'not authenticated'}, status = 400)

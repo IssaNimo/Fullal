@@ -1,14 +1,48 @@
 import React, { useState } from 'react'
 import { Button, Form } from 'react-bootstrap'
 import "./style.css";
+import { QueryClient, QueryClientProvider, useQuery } from 'react-query'
 
-export default function Login() {
+const queryClient = new QueryClient()
+
+export default function App() {
+   return (
+     <QueryClientProvider client={queryClient}>
+       <Login />
+     </QueryClientProvider>
+   )
+}
+function Login() {
 
   const [user, setUser] = useState("")
   const [password, setPassword] = useState("")
-  // const [errormsg, setErrormsg] = useState("")
- 
-    
+  const endpoint = 'http://localhost:8001/accounts/graphql'
+  const Users = `
+  {
+    Users{ 
+      username
+      password
+    }
+  }
+`;
+const { isLoading, error} = useQuery("Launches", () => {
+  return fetch(endpoint, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ query: Users }),
+  })
+  .then((response) => {
+    if (response.status >= 400) {
+      throw new Error("Error fetching data");
+    } else {
+      return response.json();
+    }
+  })
+  .then((data) => data.data);
+
+})
+if (isLoading) return "Loading...";
+if (error) return <pre>{error.message}</pre>;
   return (
     <div id='loginform'>
         
