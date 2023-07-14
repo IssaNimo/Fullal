@@ -1,120 +1,42 @@
-.header{
-    background-color: #3d3635;
-    height: 70px;
-    display: flex;
-    font-size: 1.1rem;
-    position: sticky;
-    top: 0;
-    z-index: 20;
-    
-    
-}
-.logo{    
+.w-90{
+  background-color:	#F4C2C2;
+  min-height: 100vh;
 
-    height: 5rem; 
-}
-.side1{
-    background-color: #464644;
-    height: 1000px;
-}
-.side2{
-    background-color: goldenrod
-}
-.side3{
-    color: #ffffff;
-    display: flex;
-    font-size: 20px;
-    margin-top: 30px;
-    top: 0;
-    left: -100%;
-    height: 100%;
-    padding: 20px 0 0 30px;
-    border-bottom: 1px solid white;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    
-
-    
-}
-#title{
-    padding-left: 10px;
-    
-}
-a:hover{
-    background-color: goldenrod;
-    width: 260px;
 }
 
-.sub_counties {
-    position: relative;
-    max-width: 21rem;
-    height: 15rem;
-    margin: 2rem auto;
-    padding: 2em;
-    border-radius: 0.75em;
-    box-shadow: 5px 5px 20px rgba(0 0 0/0.15);
-    text-align: left;
-    transition: transform 200ms ease-in;
-    background-color: #ffffff;
-  }
+.leftPanel{
+  background-color: #fff;
   
-.section__title {
-    margin: 0 auto;
-    max-width: 90%;
-    font-size: 1.65rem;
-    font-weight: 300;
-    line-height: 1.5em;
-    text-align: center;
-  }
-
-
-  .SamburuNorth {
-  border-top: 5px solid #464644;
 }
+.section_title{
+  color:black;
+  margin-bottom: 20px;
+}
+.sidebar{
+  border-radius: 10px;
+  padding: 16px 15px;
+  color: #333333;
+  text-decoration: none;
+  display: flex;
+ 
+}
+#icon{
+  padding-right: 20px;
+  font-size: 20px;
 
-.SamburuEast {
-    border-top: 5px solid #464644;
-  }
-  .SamburuWest {
-    border-top: 5px solid #464644;
-  }
-  @media (min-width: 1000px) {
-    body {
-      align-items: center;
-      min-height: 100vh;
-    }
-  
-    section {
-      max-width: 200rem;
-    }
-  
-    .section__title {
-      margin: 0 auto;
-      max-width: 40%;
-      font-size: 2rem;
-    }
-  
-    .section__desc {
-      max-width: 55ch;
-      margin: 1rem auto 1rem;
-    }
-  
-    .sub_counties {
-      display: flex;
-      gap: 1rem;
-      margin-top: 100px;
-    }
-  
-    .SamburuEast {
-      margin: auto 0;
-      margin-top: -100px;
-      margin-left: 185px;
-    }
-  
-    .SamburuWest {
-      margin: auto 0;
-      margin-left: 875px;
-      margin-top: -250px;
+}
+.active-link {
+  font-weight:bolder;
+  background-color: #f5f5f5;
 
-    }
-  }
+}
+.active-link #title {
+  font-weight:bolder;
+}
+.hover-link:hover {
+  background-color: #f5f5f5;
   
+
+
+  
+}

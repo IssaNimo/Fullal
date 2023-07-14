@@ -8,20 +8,19 @@ export const SideBar = () => {
   return (
     <div>
 
-        {
-            SidebarData.map((item, index)=>{
-                return(
-                    <div className='side3' key={index}>
-                        <NavLink as={Link} to={item.path}>
-                            <span id='icon'>{item.icon}</span>
-                            <span id='title'>{item.title}</span>
+{
+  SidebarData.map((item, index) => {
+    return (
+      <div className='sidebar' key={index}>
+        <NavLink  as={Link} to={item.path} activeClassName='active-link' className='hover-link'>
+        <span id='icon' className='large-icon'>{item.icon}</span>
+          <span id='title'>{item.title}</span>
+        </NavLink>
+      </div>
+    );
+  })
+}
 
-                        </NavLink>
-
-                    </div>
-                )
-            })
-        }
 
     </div>
   )
