@@ -17,7 +17,11 @@ export const SidebarData = [
     path: "/users",
     icon: <FaIcons.FaUser />,
  },
-
+ {
+   title: "Registered Schools",
+   path: "/users",
+   icon: <FaIcons.FaSchool />,
+},
  {
     title: "Setting",
     path: "/settings",
