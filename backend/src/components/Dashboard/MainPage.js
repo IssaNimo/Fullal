@@ -32,9 +32,10 @@ export default function MainPage() {
           <div className='col-0 col-sm-2'><div class="mb-6 mt-4 leftPanel"><div class="py-2 mb-4">
             
           <div class="d-flex flex-column px-2">
-  <img src="path/to/logo.png" alt="Logo" style={{maxWidth: "100px; max-height: 100px;"}}></img>
+  <img className='logo' src={'/logo.png'} alt='avatar'/>
   <hr></hr>
-</div>              <SideBar />
+  </div>              
+  <SideBar />
               </div></div></div>
               <div  class="col-12 col-sm-10 pt-4">
               <NavPage />
